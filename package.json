@@ -1,0 +1,59 @@
+{
+  "name": "8-tdd",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node ace build --production",
+    "dev": "node ace serve --watch",
+    "lint": "eslint . --ext=.ts",
+    "test": "node -r @adonisjs/assembler/build/register .japarc.ts"
+  },
+  "dependencies": {
+    "@adonisjs/core": "^5.0.4-preview-rc-2",
+    "@adonisjs/lucid": "^9.0.3",
+    "@adonisjs/repl": "^1.1.5",
+    "luxon": "^1.25.0",
+    "mysql": "^2.18.1",
+    "proxy-addr": "^2.0.6",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.19"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^3.0.6",
+    "adonis-preset-ts": "^1.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-adonis": "^1.0.15",
+    "eslint-plugin-prettier": "^3.1.4",
+    "japa": "^3.1.1",
+    "pino-pretty": "^4.3.0",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.5",
+    "youch": "^2.1.1",
+    "youch-terminal": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=10.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint --verbose -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "./{src,tests}/**/*.ts": [
+      "npm run lint"
+    ]
+  }
+}
